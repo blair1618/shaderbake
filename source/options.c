@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <assert.h>
-#include "shader_bakery.h"
+#include "shaderbake.h"
 
 sb_options* sb_options_create()
 {

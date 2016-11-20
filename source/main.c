@@ -3,7 +3,7 @@
 #include <memory.h>
 #include <assert.h>
 #include <limits.h>
-#include "shader_bakery.h"
+#include "shaderbake.h"
 
 int main(int argc, char** argv)
 {

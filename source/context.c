@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <GLFW/glfw3.h>
-#include "shader_bakery.h"
+#include "shaderbake.h"
 
 struct sb_context_s {
   GLFWwindow* window;

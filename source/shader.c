@@ -4,7 +4,7 @@
 #include <string.h>
 #define GLFW_INCLUDE_GLEXT
 #include <GLFW/glfw3.h>
-#include "shader_bakery.h"
+#include "shaderbake.h"
 
 #define POS_ATTRIBUTE "a_position"
 

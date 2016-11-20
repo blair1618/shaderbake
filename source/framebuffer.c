@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #define GLFW_INCLUDE_GLEXT
 #include <GLFW/glfw3.h>
-#include "shader_bakery.h"
+#include "shaderbake.h"
 
 
 struct sb_framebuffer_s {

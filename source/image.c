@@ -2,7 +2,7 @@
 #include <stddef.h>
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
-#include "shader_bakery.h"
+#include "shaderbake.h"
 
 void sb_image_save(sb_framebuffer* framebuffer, sb_options* options)
 {
