@@ -21,6 +21,11 @@ sb_context* sb_context_create(sb_options* options)
     return NULL;
   }
 
+  if (!options->use_display)
+  {
+    glfwWindowHint(GLFW_VISIBLE, 0);
+  }
+
   int w = options->width;
   int h = options->height;
   context->window = glfwCreateWindow(w, h, "Bakery", NULL, NULL);

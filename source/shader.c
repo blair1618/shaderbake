@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define GL_GLEXT_PROTOTYPES
+#define GLFW_INCLUDE_GLEXT
 #include <GLFW/glfw3.h>
 #include "shader_bakery.h"
 
@@ -10,8 +10,10 @@
 
 const GLchar* vs_source =
 "attribute vec2 " POS_ATTRIBUTE ";\n"
+"varying vec2 v_position;\n"
 "void main()\n"
 "{\n"
+"  v_position = " POS_ATTRIBUTE ";\n"
 "  gl_Position = vec4(a_position, 0., 1.);\n"
 "}\n";
 

@@ -4,8 +4,8 @@ project(shader_bakery)
 
 set(CMAKE_C_STANDARD 11)
 
-include_directories(include)
-add_library(shader_bakery source/context.c source/options.c source/quad.c source/shader.c)
+include_directories(include stb)
+add_library(shader_bakery source/context.c source/options.c source/quad.c source/shader.c source/framebuffer.c source/image.c)
 
 find_package(OpenGL REQUIRED)
 find_package(glfw3 REQUIRED)

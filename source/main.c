@@ -54,7 +54,6 @@ int main(int argc, char** argv)
     assert(read <= INT_MAX);
     shader = sb_shader_create(buffer, (int)read);
   }
-
   if (shader == NULL)
   {
     printf("Error creating shader!\n");
@@ -62,15 +61,30 @@ int main(int argc, char** argv)
   }
 
   sb_quad* quad = sb_quad_create();
-
   if (quad == NULL)
   {
     printf("Error creating quad!\n");
     return 1;
   }
 
-  sb_context_draw(context, shader, quad);
-  sb_context_show(context);
+  sb_framebuffer* framebuffer = NULL;
+  if (options->use_display)
+  {
+    sb_context_draw(context, shader, quad);
+    sb_context_show(context);
+  }
+  else
+  {
+    framebuffer = sb_framebuffer_create(options);
+    if (framebuffer == NULL)
+    {
+      printf("Error creating framebuffer!\n");
+      return 1;
+    }
+    sb_context_draw(context, shader, quad);
+    sb_image_save(framebuffer, options);
+    sb_framebuffer_delete(framebuffer);
+  }
 
   sb_quad_delete(quad);
   sb_shader_delete(shader);

@@ -7,12 +7,13 @@ typedef struct sb_options_s {
   const char* output_image_file;
   const char* input_shader_file;
   int use_stdin;
+  int use_display;
   int width;
   int height;
 } sb_options;
 
 sb_options* sb_options_create();
-void sb_options_parse(sb_options* options, int argc, char **argv);
+void sb_options_parse(sb_options* options, int argc, char** argv);
 void sb_options_delete(sb_options* options);
 
 //
@@ -34,11 +35,27 @@ void sb_quad_draw(sb_quad* quad);
 void sb_quad_delete(sb_quad* quad);
 
 //
+// Framebuffer
+//
+typedef struct sb_framebuffer_s sb_framebuffer;
+
+sb_framebuffer* sb_framebuffer_create(sb_options* options);
+size_t sb_framebuffer_data_size(sb_framebuffer* framebuffer);
+void sb_framebuffer_data_copy(sb_framebuffer* framebuffer, void* destination);
+void sb_framebuffer_use(sb_framebuffer* framebuffer);
+void sb_framebuffer_delete(sb_framebuffer* framebuffer);
+
+//
+// Image
+//
+void sb_image_save(sb_framebuffer* framebuffer, sb_options* options);
+
+//
 // Context
 //
 typedef struct sb_context_s sb_context;
 
-sb_context * sb_context_create(sb_options *options);
+sb_context * sb_context_create(sb_options* options);
 void sb_context_draw(sb_context* context, sb_shader* shader, sb_quad* quad);
 void sb_context_show(sb_context* context);
 void sb_context_delete(sb_context* context);

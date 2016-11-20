@@ -1,6 +1,6 @@
 #include <assert.h>
 #include <stdlib.h>
-#define GL_GLEXT_PROTOTYPES
+#define GLFW_INCLUDE_GLEXT
 #include <GLFW/glfw3.h>
 #include "shader_bakery.h"
 
