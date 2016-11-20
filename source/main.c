@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "shader_bakery.h"
 
 int main(int argc, char** argv)
@@ -13,16 +14,32 @@ int main(int argc, char** argv)
     printf("Error creating context!\n");
     return 1;
   }
-  printf("Created a context!\n");
 
-  sb_shader* shader = sb_shader_create("void main() { gl_FragColor = vec4(0.5); }", -1);
+  sb_shader* shader = NULL;
+  if (options->input_shader_file)
+  {
+    FILE* file = fopen(options->input_shader_file, "rb");
+    if (!file)
+    {
+      printf("Could not open file: %s\n", options->input_shader_file);
+    }
+    else
+    {
+      fseek(file, 0, SEEK_END);
+      size_t size = (size_t)ftell(file);
+      fseek(file, 0, SEEK_SET);
+      char* buffer = (char*)malloc(size);
+      fread(buffer, 1, size, file);
+      fclose(file);
+      shader = sb_shader_create(buffer, (int)size);
+    }
+  }
 
   if (shader == NULL)
   {
     printf("Error creating shader!\n");
     return 1;
   }
-  printf("Created a shader!\n");
 
   sb_quad* quad = sb_quad_create();
 
@@ -31,7 +48,6 @@ int main(int argc, char** argv)
     printf("Error creating quad!\n");
     return 1;
   }
-  printf("Created a quad!\n");
 
   sb_context_draw(context, shader, quad);
   sb_context_show(context);

@@ -4,6 +4,8 @@
 // Options
 //
 typedef struct sb_options_s {
+  const char* output_image_file;
+  const char* input_shader_file;
   int width;
   int height;
 } sb_options;

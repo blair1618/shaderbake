@@ -6,8 +6,10 @@
 sb_options* sb_options_create()
 {
   sb_options* options = malloc(sizeof(sb_options));
-  options->width = 800;
-  options->height = 600;
+  options->output_image_file = NULL;
+  options->input_shader_file = NULL;
+  options->width = 256;
+  options->height = 256;
   return options;
 }
 
@@ -19,7 +21,7 @@ void sb_options_parse(sb_options* options, int argc, char **argv)
   const char* height = NULL;
   do
   {
-    c = getopt(argc, argv, "w:h:");
+    c = getopt(argc, argv, "w:h:f:o:");
     switch (c)
     {
     case 'w':
@@ -27,6 +29,12 @@ void sb_options_parse(sb_options* options, int argc, char **argv)
       break;
     case 'h':
       height = optarg;
+      break;
+    case 'f':
+      options->input_shader_file = optarg;
+      break;
+    case 'o':
+      options->output_image_file = optarg;
       break;
     default:
       break;
