@@ -3,18 +3,17 @@
 #include <stdlib.h>
 #include <string.h>
 #define GL_GLEXT_PROTOTYPES
-#include <SDL2/SDL_opengl.h>
-#include <SDL2/SDL_opengl_glext.h>
+#include <GLFW/glfw3.h>
 #include "shader_bakery.h"
 
 #define POS_ATTRIBUTE "a_position"
 
 const GLchar* vs_source =
-"attribute vec2 " POS_ATTRIBUTE ";" \
-"void main()" \
-"{" \
-"  gl_Position = vec4(a_position, 0., 1.);" \
-"}";
+"attribute vec2 " POS_ATTRIBUTE ";\n"
+"void main()\n"
+"{\n"
+"  gl_Position = vec4(a_position, 0., 1.);\n"
+"}\n";
 
 struct sb_shader_s {
   GLuint program;

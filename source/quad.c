@@ -1,8 +1,7 @@
 #include <assert.h>
 #include <stdlib.h>
 #define GL_GLEXT_PROTOTYPES
-#include <SDL2/SDL_opengl.h>
-#include <SDL2/SDL_opengl_glext.h>
+#include <GLFW/glfw3.h>
 #include "shader_bakery.h"
 
 struct sb_quad_s {

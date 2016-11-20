@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <SDL2/SDL_events.h>
 #include "shader_bakery.h"
 
 int main(int argc, char** argv)
@@ -35,12 +34,7 @@ int main(int argc, char** argv)
   printf("Created a quad!\n");
 
   sb_context_draw(context, shader, quad);
-  SDL_Event event;
-  do
-  {
-    SDL_WaitEvent(&event);
-  }
-  while (event.type != SDL_QUIT);
+  sb_context_show(context);
 
   sb_quad_delete(quad);
   sb_shader_delete(shader);

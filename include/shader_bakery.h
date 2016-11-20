@@ -36,5 +36,6 @@ void sb_quad_delete(sb_quad* quad);
 typedef struct sb_context_s sb_context;
 
 sb_context * sb_context_create(sb_options *options);
-void sb_context_draw(sb_context *context, sb_shader *shader, sb_quad *quad);
-void sb_context_delete(sb_context *context);
+void sb_context_draw(sb_context* context, sb_shader* shader, sb_quad* quad);
+void sb_context_show(sb_context* context);
+void sb_context_delete(sb_context* context);
