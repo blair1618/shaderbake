@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <memory.h>
+#include <assert.h>
+#include <limits.h>
 #include "shader_bakery.h"
 
 int main(int argc, char** argv)
@@ -31,8 +34,25 @@ int main(int argc, char** argv)
       char* buffer = (char*)malloc(size);
       fread(buffer, 1, size, file);
       fclose(file);
+      assert(size <= INT_MAX);
       shader = sb_shader_create(buffer, (int)size);
     }
+  }
+  else if (options->use_stdin)
+  {
+    size_t size = 1024;
+    size_t read = 0;
+    char* buffer = malloc(size);
+    while ((read += fread(buffer, 1, size - read, stdin)) >= size)
+    {
+      size *= 2;
+      char* copy = buffer;
+      buffer = malloc(size);
+      memcpy(buffer, copy, read);
+      free(copy);
+    }
+    assert(read <= INT_MAX);
+    shader = sb_shader_create(buffer, (int)read);
   }
 
   if (shader == NULL)
