@@ -1,3 +1,6 @@
+### Custom ###
+/build/
+/.idea/
 
 # Created by https://www.gitignore.io/api/macos,linux,intellij,c,vim,emacs,cmake
 
