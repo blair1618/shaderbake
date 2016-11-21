@@ -1,10 +1,10 @@
 #include <assert.h>
 #include <stddef.h>
-#define STB_IMAGE_WRITE_IMPLEMENTATION
-#include "stb_image_write.h"
+#include <stdlib.h>
+#include "lodepng.h"
 #include "shaderbake.h"
 
-void sb_image_save(sb_framebuffer* framebuffer, sb_options* options)
+int sb_image_save(sb_framebuffer* framebuffer, sb_options* options)
 {
   assert(framebuffer != NULL);
   assert(options != NULL);
@@ -27,9 +27,9 @@ void sb_image_save(sb_framebuffer* framebuffer, sb_options* options)
     memcpy(upper, lower, stride);
     memcpy(lower, row, stride);
   }
-  int success = stbi_write_png(filename, options->width, options->height, 4, data, stride);
-  if (!success)
-  {
-    printf("Error writing image!\n");
-  }
+  assert(options->width > 0);
+  assert(options->height > 0);
+  unsigned int width = (unsigned int)options->width;
+  unsigned int height = (unsigned int)options->height;
+  return lodepng_encode_file(filename, data, width, height, LCT_RGBA, 8);
 }

@@ -49,7 +49,7 @@ void sb_framebuffer_delete(sb_framebuffer* framebuffer);
 //
 // Image
 //
-void sb_image_save(sb_framebuffer* framebuffer, sb_options* options);
+int sb_image_save(sb_framebuffer* framebuffer, sb_options* options);
 
 //
 // Context

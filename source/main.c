@@ -88,7 +88,10 @@ int main(int argc, char** argv)
       return 1;
     }
     sb_context_draw(context, shader, quad);
-    sb_image_save(framebuffer, options);
+    if (sb_image_save(framebuffer, options) != 0)
+    {
+      printf("Error saving image!\n");
+    }
     sb_framebuffer_delete(framebuffer);
   }
 
