@@ -13,6 +13,7 @@ typedef struct sb_options_s {
 } sb_options;
 
 sb_options* sb_options_create();
+const char* sb_options_help_string();
 void sb_options_parse(sb_options* options, int argc, char** argv);
 void sb_options_delete(sb_options* options);
 

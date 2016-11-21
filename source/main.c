@@ -7,6 +7,12 @@
 
 int main(int argc, char** argv)
 {
+  if (argc == 1)
+  {
+    printf("%s", sb_options_help_string());
+    return 0;
+  }
+
   sb_options* options = sb_options_create();
   sb_options_parse(options, argc, argv);
 
