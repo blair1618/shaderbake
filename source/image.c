@@ -27,6 +27,8 @@ int sb_image_save(sb_framebuffer* framebuffer, sb_options* options)
     memcpy(upper, lower, stride);
     memcpy(lower, row, stride);
   }
+  free(row);
+  row = NULL;
   assert(options->width > 0);
   assert(options->height > 0);
   unsigned int width = (unsigned int)options->width;
